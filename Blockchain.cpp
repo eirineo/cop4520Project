@@ -15,3 +15,10 @@ Block Blockchain::_GetLastBlock() const
 {
     return _vChain.back();
 }
+
+// void ThreadBlockChain::AddThreadBlock(ThreadBlock bNew)
+// {
+//     bNew.sPrevHash = _GetLastBlock().GetHash();
+//     bNew.MultiThreadMine(_nDifficulty);
+//     _vChain.push_back(bNew);
+// }

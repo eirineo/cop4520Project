@@ -10,7 +10,7 @@ class Blockchain
         Blockchain();
         
         void AddBlock(Block bNew);
-    private:
+    protected:
         uint32_t _nDifficulty;
         vector<Block> _vChain;
 
@@ -18,3 +18,4 @@ class Blockchain
     
 
 };//end class
+
