@@ -6,5 +6,5 @@ gcc -lstdc++ \
     -stdlib=libc++ \
     -x c++ \
     -pthread \
-    main.cpp ThreadBlock.cpp Block.cpp Blockchain.cpp sha256.cpp
+    main.cpp ThreadBlockChain.cpp ThreadBlock.cpp Block.cpp Blockchain.cpp sha256.cpp
 ./TestChain
