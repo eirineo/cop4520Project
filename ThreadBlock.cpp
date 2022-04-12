@@ -44,7 +44,6 @@ void ThreadBlock::MultiThreadMine(uint32_t nDifficulty)
     cstr[nDifficulty] = '\0';
 
     string str(cstr);
-        std::cout << "works\n";
     
     //starts threads
     for(int i = 0; i < numThreads; i++)
@@ -63,12 +62,12 @@ void ThreadBlock::MultiThreadMine(uint32_t nDifficulty)
             nextIndex++;
             nextIndex %= numThreads;
         }//end for loop
+
         //retrieved promised value
         _sHash = fufilledGurantees[nextIndex].get();
-        std::cout << _sHash << "\n";
-
         //resets thread
         blockThreads[nextIndex].join();
+
         promise<string> gurantee;
         fufilledGurantees[nextIndex] = gurantee.get_future();
         blockThreads[nextIndex] = thread(&ThreadBlock::_CalculateHash,this, move(gurantee));
