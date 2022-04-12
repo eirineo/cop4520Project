@@ -30,7 +30,7 @@ string ThreadBlock::_CalculateHash(promise<string> && prms)
 
 void ThreadBlock::MultiThreadMine(uint32_t nDifficulty)
 {
-    const int numThreads = 1;
+    const int numThreads = 10;
     thread blockThreads[numThreads];
     future<string> fufilledGurantees[numThreads];
     int nextIndex = 0;
