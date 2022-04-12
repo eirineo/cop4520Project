@@ -32,9 +32,11 @@ void testThreadBlockChain(int blocks)
     auto start = high_resolution_clock::now();
     for(int i = 1; i <= blocks;i++)
     {
-        pBlockChain.AddThreadBlock(ThreadBlock(1, "Thread Block 1 Data"));
+        std::cout << "Adding a bloc\n";
+        pBlockChain.AddThreadBlock(ThreadBlock(i, "Thread Block 1 Data"));
+        std::cout << "Finished adding block\n";
     }
-
+    std::cout << "finished adding blocks\n";
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(stop - start);
 
@@ -50,10 +52,10 @@ void testBlock()
 }
 int main()
 {
-    int numberOfBlocksToAdd = 10;
+    int numberOfBlocksToAdd = 1;
 
 
-    testBlockChain(numberOfBlocksToAdd);
+    //testBlockChain(numberOfBlocksToAdd);
 
     testThreadBlockChain(1);
 
