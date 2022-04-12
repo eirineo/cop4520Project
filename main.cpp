@@ -52,12 +52,12 @@ void testBlock()
 }
 int main()
 {
-    int numberOfBlocksToAdd = 1;
+    int numberOfBlocksToAdd = 10;
 
 
-    //testBlockChain(numberOfBlocksToAdd);
+    testBlockChain(numberOfBlocksToAdd);
 
-    testThreadBlockChain(1);
+    testThreadBlockChain(numberOfBlocksToAdd);
 
 
     return 0;
