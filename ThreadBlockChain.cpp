@@ -2,7 +2,7 @@
 ThreadBlockChain::ThreadBlockChain()
 {
     _vChain.emplace_back(ThreadBlock(0, "Genesis Block"));
-    _nDifficulty = 3;
+    _nDifficulty = 6;
 }
 
 void ThreadBlockChain::AddThreadBlock(ThreadBlock bNew)

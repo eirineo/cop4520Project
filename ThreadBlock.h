@@ -21,6 +21,6 @@ class ThreadBlock
         string _sData;
         string _sHash;
         time_t _tTime;
-
-        string _CalculateHash(promise<string> && prms);
+        bool lookingForHash;
+        void _CalculateHash();
 };

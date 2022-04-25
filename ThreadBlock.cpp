@@ -16,42 +16,58 @@ string ThreadBlock::GetHash()
     return _sHash;
 }
 
-string ThreadBlock::_CalculateHash(promise<string> && prms)
+void ThreadBlock::_CalculateHash()
 {
+    if(!lookingForHash)
+    {
+        return;
+    }
     string result = "";
     stringstream ss;
+    int diff = 6;
+    char cstr[diff + 1];
+    for(uint32_t i = 0; i < diff; ++i)
+    {
+        cstr[i] = '0';
+    }
+    cstr[diff] = '\0';
+    string str(cstr);
+    
     _nNonce++;
     ss << _nIndex << _tTime << _sData << _nNonce << sPrevHash;
 
     result = sha256(ss.str());
-    prms.set_value(result);
-    return result;
+
+    if(str == result.substr(0, diff))
+    {
+        _sHash = result;
+        lookingForHash = false;
+    }
 }
 
 void ThreadBlock::MultiThreadMine(uint32_t nDifficulty)
 {
-    const int numThreads = 10;
+    const int numThreads = 8;
     thread blockThreads[numThreads];
-    future<string> fufilledGurantees[numThreads];
+    // future<string> fufilledGurantees[numThreads];
     int nextIndex = 0;
 
     char cstr[nDifficulty + 1];
-    for(uint32_t i = 0; i < nDifficulty; ++i)
-    {
-        cstr[i] = '0';
-    }
+    // for(uint32_t i = 0; i < nDifficulty; ++i)
+    // {
+    //     cstr[i] = '0';
+    // }
 
-    cstr[nDifficulty] = '\0';
+    // cstr[nDifficulty] = '\0';
 
-    string str(cstr);
+    // string str(cstr);
     
     //starts threads
     for(int i = 0; i < numThreads; i++)
     {
-        promise<string> gurantee;
-
-        fufilledGurantees[i] = gurantee.get_future();
-        blockThreads[i] = thread(&ThreadBlock::_CalculateHash,this, move(gurantee));
+        // promise<string> gurantee;
+        // fufilledGurantees[i] = gurantee.get_future();
+        blockThreads[i] = thread(&ThreadBlock::_CalculateHash,this);
     }
     //loops until hash is found
     do
@@ -64,18 +80,18 @@ void ThreadBlock::MultiThreadMine(uint32_t nDifficulty)
         }//end for loop
 
         //retrieved promised value
-        _sHash = fufilledGurantees[nextIndex].get();
+        // _sHash = fufilledGurantees[nextIndex].get();
         //resets thread
         blockThreads[nextIndex].join();
 
-        promise<string> gurantee;
-        fufilledGurantees[nextIndex] = gurantee.get_future();
-        blockThreads[nextIndex] = thread(&ThreadBlock::_CalculateHash,this, move(gurantee));
+        // promise<string> gurantee;
+        // fufilledGurantees[nextIndex] = gurantee.get_future();
+        blockThreads[nextIndex] = thread(&ThreadBlock::_CalculateHash, this);
 
-    } while (_sHash.substr(0, nDifficulty) != str);
+    } while (lookingForHash);
     for(int i = 0; i < numThreads; i++)
     {
 
         blockThreads[i].join();
     }
-}
+}//mine
