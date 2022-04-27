@@ -52,11 +52,11 @@ int main()
 {
     int numberOfBlocksToAdd = 10;
 
-
+    for(int i = 0; i < 100;i++){
     testBlockChain(numberOfBlocksToAdd);
 
     testThreadBlockChain(numberOfBlocksToAdd);
-
+    }
 
     return 0;
 }
