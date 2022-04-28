@@ -9,6 +9,7 @@ ThreadBlock::ThreadBlock(uint32_t nIndexIn, const string &sDataIn) : _nIndex(nIn
 {
     _nNonce = -1;
     _tTime = time(nullptr);
+    lookingForHash = true;
 }
 
 string ThreadBlock::GetHash()
