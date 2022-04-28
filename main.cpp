@@ -52,11 +52,11 @@ int main()
 {
     int numberOfBlocksToAdd = 10;
 
-    for(int i = 0; i < 100;i++){
+    for(int i = 0; i < 10;i++){
     testBlockChain(numberOfBlocksToAdd);
 
     testThreadBlockChain(numberOfBlocksToAdd);
-    std::cout << i << "chains completed\n";
+    std::cout << i << " chains completed\n";
     }
     std::cout << "Program complete\n";
 
