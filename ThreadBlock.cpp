@@ -41,57 +41,26 @@ void ThreadBlock::_CalculateHash()
             _sHash = result;
             lookingForHash = false;
         }//end if
-    }//end hwile loop
-}//end calchash
+    }//end while loop
+}//end _CalculateHash
 
 void ThreadBlock::MultiThreadMine(uint32_t nDifficulty)
 {
     const int numThreads = 8;
     thread blockThreads[numThreads];
-    // future<string> fufilledGurantees[numThreads];
     int nextIndex = 0;
-
     char cstr[nDifficulty + 1];
-    // for(uint32_t i = 0; i < nDifficulty; ++i)
-    // {
-    //     cstr[i] = '0';
-    // }
-
-    // cstr[nDifficulty] = '\0';
-
-    // string str(cstr);
     
     //starts threads
     for(int i = 0; i < numThreads; i++)
     {
-        // promise<string> gurantee;
-        // fufilledGurantees[i] = gurantee.get_future();
         blockThreads[i] = thread(&ThreadBlock::_CalculateHash,this);
     }
-    //loops until hash is found
-    // do
-    // {   
-    //     //finds next available thread
-    //     for(nextIndex = 0;!blockThreads[nextIndex].joinable(); nextIndex++)
-    //     {
-    //         nextIndex++;
-    //         nextIndex %= numThreads;
-    //     }//end for loop
 
-    //     //retrieved promised value
-    //     // _sHash = fufilledGurantees[nextIndex].get();
-    //     //resets thread
-    //     blockThreads[nextIndex].join();
-
-    //     // promise<string> gurantee;
-    //     // fufilledGurantees[nextIndex] = gurantee.get_future();
-    //     blockThreads[nextIndex] = thread(&ThreadBlock::_CalculateHash, this);
-
-    // } while (lookingForHash);
     while(lookingForHash){}
+
     for(int i = 0; i < numThreads; i++)
     {
-
         blockThreads[i].join();
     }
-}//mine
+}//end MultiThreadMine

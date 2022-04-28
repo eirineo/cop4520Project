@@ -1,5 +1,4 @@
 #include <sstream>
-#include <future>
 #include "Block.h"
 #include "sha256.h"
 Block::Block(uint32_t nIndexIn, const string &sDataIn) : _nIndex(nIndexIn),_sData(sDataIn)
@@ -30,7 +29,6 @@ void Block::MineBlock(uint32_t nDifficulty)
         _nNonce++;
         _sHash = _CalculateHash();
     } while (_sHash.substr(0, nDifficulty) != str);
-    //cout << "Block mined: " << _sHash << endl;
 }   
 
 inline string Block::_CalculateHash() const
@@ -41,17 +39,3 @@ inline string Block::_CalculateHash() const
     return sha256(ss.str());
 }
 
-
-
-// int ThreadBlock::getNextThread()
-// {
-//     int result = 0;
-//     while(!blockThreads[result].joinable())
-//     {
-//         result++;
-//         result %= 8;
-//     }
-
-//     blockThreads[result].join();
-//     return result;
-// }
