@@ -48,7 +48,6 @@ void ThreadBlock::MultiThreadMine(uint32_t nDifficulty)
 {
     const int numThreads = 8;
     thread blockThreads[numThreads];
-    int nextIndex = 0;
     
     //starts threads
     for(int i = 0; i < numThreads; i++)
