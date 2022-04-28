@@ -58,7 +58,7 @@ int main()
     testThreadBlockChain(numberOfBlocksToAdd);
     std::cout << i << "chains completed\n";
     }
-    std::cout << "Program complete";
+    std::cout << "Program complete\n";
 
     return 0;
 }

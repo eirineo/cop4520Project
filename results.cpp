@@ -20,7 +20,7 @@ int main()
         }
         file.close();
     }
-    std::cout << std::fixed << std::setprecision(3) << "Control results: " << ((sum / count) / 1000) << " seconds on average\n";
+    std::cout << std::fixed << std::setprecision(3) << count << " Control results: " << ((sum / count) / 1000) << " seconds on average\n";
 
     std::ifstream threadFile (MULTITHREAD_RESULTS_FILE);
     count = 0.0;
@@ -34,6 +34,6 @@ int main()
         }
         threadFile.close();
     }
-    std::cout << std::fixed << std::setprecision(3) << "Concurrent results: " << ((sum / count) / 1000) << " seconds on average\n";  
+    std::cout << std::fixed << std::setprecision(3) << count << " Concurrent results: " << ((sum / count) / 1000) << " seconds on average\n";  
     return 0;
 }//end of main
