@@ -9,7 +9,7 @@ class ThreadBlockChain
 {
     public:
         ThreadBlockChain();
-        
+        ~ThreadBlockChain();
         void AddThreadBlock(ThreadBlock bNew);
     protected:
         uint32_t _nDifficulty;

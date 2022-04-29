@@ -3,6 +3,9 @@ Blockchain::Blockchain() {
     _vChain.emplace_back(Block(0, "Genesis Block"));
     _nDifficulty = 6;
 }
+Blockchain::~Blockchain() {
+    cout << "Single thread blockchain destroyed\n";
+}
 
 void Blockchain::AddBlock(Block bNew)
 {

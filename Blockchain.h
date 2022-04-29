@@ -8,7 +8,7 @@ class Blockchain
 {
     public:
         Blockchain();
-        
+        ~Blockchain();
         void AddBlock(Block bNew);
     protected:
         uint32_t _nDifficulty;

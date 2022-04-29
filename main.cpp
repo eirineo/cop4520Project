@@ -8,7 +8,7 @@ using namespace std::chrono;
 
 void testBlockChain(int blocks)
 {
-    Blockchain bChain = Blockchain();
+    Blockchain bChain;
 
     auto start = high_resolution_clock::now();
     //cout << "Mining block 1..." << endl;
@@ -27,7 +27,7 @@ void testBlockChain(int blocks)
 }
 void testThreadBlockChain(int blocks)
 {
-    ThreadBlockChain pBlockChain = ThreadBlockChain();
+    ThreadBlockChain pBlockChain;
 
     auto start = high_resolution_clock::now();
     for(int i = 1; i <= blocks;i++)
